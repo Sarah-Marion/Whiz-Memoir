@@ -30,3 +30,42 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput(attrs={'class':'validate', 'placeholder':'Username'}))
     password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))
 
+
+
+TASK = "task"
+NOTE = "note"
+EVENT = "event"
+
+ENTRY_CHOICES = (
+    (None, ""),
+    (TASK, 'Task'),
+    (NOTE, 'Note'),
+    (EVENT, 'Event'),
+)
+
+
+class EntryCreationForm(forms.Form):
+    type = forms.ChoiceField(label="Type", choices=ENTRY_CHOICES, error_messages={'required': 'Kindly select the type of event'})
+    entry = forms.CharField(label="Entry", error_messages={'required': 'Kindly input some text for your entry'})
+    date = forms.DateField(label="Date", error_messages={'required': 'Kindly pick an entry date '})
+    priority = forms.BooleanField(label="Precedence", required=False)
+    explore = forms.BooleanField(label="Explore", required=False)
+    inspiration = forms.BooleanField(label="Motivation", required=False)
+
+    def save(self, user):
+        if self.is_valid():
+            if self.cleaned_data['type'] == TASK:
+                model = Task()
+            elif self.cleaned_data['type'] == NOTE:
+                model = Note()
+                model.explore = self.cleaned_data['explore']
+                model.inspiration = self.cleaned_data['inspiration']
+            elif self.cleaned_data['type'] == EVENT:
+                model = Event()
+
+            model.date = self.cleaned_data['date']
+            model.description = self.cleaned_data['entry']
+            model.priority = self.cleaned_data['priority']
+            model.author = user
+
+            model.save() 
