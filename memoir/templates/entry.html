@@ -1,0 +1,36 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+<div class="{{ entry.get_class_name }} row">
+    <div class="glyphicons two columns">
+        &nbsp;
+        {% if entry.priority %}
+            <h5 class="inline">&#9734;</h5>
+{#            <img src="{% static 'img/priority.png' %}">#}
+        {% endif %}
+
+        {% if entry.explore %}
+            <h5 class="inline">&#9737;</h5>
+{#            <img src="{% static 'img/explore.png' %}">#}
+        {% endif %}
+
+        {% if entry.inspiration %}
+            <h5 class="inline">&#8252;</h5>
+{#            <img src="{% static 'img/inspiration.png' %}">#}
+        {% endif %}
+
+    </div>
+
+    <div class="description ten columns">
+        <p>
+            {% if entry.get_class_name == "Note" %}
+                &#x25CF;
+            {% elif entry.get_class_name == "Event" %}
+                &#x25CB;
+            {% else %}
+                <span id="{{ entry.id }}" class="todo-icon {% if entry.completed %}checked{% else %}unchecked{% endif %}" aria-hidden="true"></span>
+            {% endif %}
+            {{ entry.description }}
+        </p>
+    </div>
+</div>

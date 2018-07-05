@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block navbar %} 
+{% endblock navbar %}
+
+{% block body %}
+    <div class="container">
+        <section class="header">
+            <h1>Welcome to The Whiz Memoir</h1>
+            <p>The 
+                <!-- <a href="http://whizmemoir.com/">Whiz Memoir</a> -->
+                is a prototype system great for people who are into goal-setting and habit tracking, people who like scrapbooking or even journaling, people who love  planners, people who want to be more organized, people who would like to keep a diary or maaybe a journal but are having trouble sticking with the habit, I'm guessing you get the drift. <br> The Whiz Memoir implements a web version of a system that allows a user
+                to use the system, without discrimination</p>
+        </section>
+
+        <div class="row">
+{#            <div class="six columns">#}
+{#                <h3 class="text-center"><a href="{% url 'home' %}">Let's Get Started</a></h3>#}
+{#            </div>#}
+
+{#            <div class="six columns">#}
+            <div class="twelve columns">
+                <h3 class="text-center"><a href="{% url 'login' %}">Log In or Register</a></h3>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

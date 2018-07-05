@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <style>
+    body {
+      background: #56ab2f;
+      background: -webkit-linear-gradient(to top, #a8e063, #56ab2f);
+      background: linear-gradient(to top, #a8e063, #56ab2f);
+    }
+  </style>
+
+  <div class="alert alert-success success-activation">
+    <img src="{% static 'img/checked.png' %}" class="img-responsive" alt="Image">
+    <h3>Please check your emails and Click the link to complete the registration.</h3>
+  </div>
+
+{% endblock %}

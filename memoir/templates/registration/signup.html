@@ -1,0 +1,38 @@
+{% extends 'registration/landing.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+  <div class="container content">
+      <div class="row text-center">
+          <h1><a href="{% url 'index' %}">The Whiz Memoir</a></h1>
+      </div>
+      <div class="container reg">
+          <div class="col-md-6">
+              {% if form.errors %}
+              <p>Password or Username is Incorrect</p>
+              {% endif %}
+              <div class="panel panel-default">
+  
+                  <div class="panel-heading">
+                      <h3 class="text-center">Register</h3>
+                  </div>
+                  <div class="panel-body">
+                      <form action="." method="post">
+                          {% csrf_token %}
+                          {% bootstrap_form form %}
+  
+                          <div class="form-group">
+                              <input type="submit" class="btn btn-primary btn-sm" value="Register">
+                          </div>
+  
+                          {% for error in form.errors %}
+                          <span style="color:red;">[{{ error }}]</span>
+                          {% endfor %}
+                      </form>
+                      <p>Have an account <a href="/login/">Login here</a></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>   
+{% endblock %}

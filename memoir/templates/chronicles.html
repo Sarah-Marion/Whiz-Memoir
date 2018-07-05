@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+    <div class="eight columns">
+        <h2>Chronicles</h2>
+        {% for month in months %}
+            <div class="row">
+                <h5><a href="{% url 'view_month' month.year month.month %}">{{ month | date:"F Y" }}</a></h5>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
